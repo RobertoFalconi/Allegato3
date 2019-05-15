@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.452
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allegato3", "Allegato3\Allegato3.csproj", "{F7400EF2-158D-4843-A1DD-C4EBBDF7E205}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allegato3API", "..\HelloWorld\Allegato3API\Allegato3API.csproj", "{022C878A-BA9A-419A-A758-3702F4244719}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Allegato3API", "Allegato3API\Allegato3API.csproj", "{022C878A-BA9A-419A-A758-3702F4244719}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
