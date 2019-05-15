@@ -43,20 +43,22 @@
             this.group6 = this.Factory.CreateRibbonGroup();
             this.gallery1 = this.Factory.CreateRibbonGallery();
             this.button5 = this.Factory.CreateRibbonButton();
-            this.button1 = this.Factory.CreateRibbonButton();
-            this.button2 = this.Factory.CreateRibbonButton();
-            this.button3 = this.Factory.CreateRibbonButton();
-            this.button4 = this.Factory.CreateRibbonButton();
             this.button6 = this.Factory.CreateRibbonButton();
             this.button7 = this.Factory.CreateRibbonButton();
             this.button8 = this.Factory.CreateRibbonButton();
             this.button9 = this.Factory.CreateRibbonButton();
+            this.button1 = this.Factory.CreateRibbonButton();
+            this.button2 = this.Factory.CreateRibbonButton();
+            this.button3 = this.Factory.CreateRibbonButton();
+            this.button4 = this.Factory.CreateRibbonButton();
+            this.button10 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
             this.group3.SuspendLayout();
             this.group4.SuspendLayout();
             this.group5.SuspendLayout();
+            this.group6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
@@ -102,6 +104,7 @@
             // 
             // group6
             // 
+            this.group6.Items.Add(this.button10);
             this.group6.Label = "group6";
             this.group6.Name = "group6";
             // 
@@ -124,38 +127,6 @@
             this.button5.Label = "Template 1";
             this.button5.Name = "button5";
             this.button5.ShowImage = true;
-            // 
-            // button1
-            // 
-            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Image = global::Allegato3.Properties.Resources.icons8_checked_40;
-            this.button1.Label = "Salva dati";
-            this.button1.Name = "button1";
-            this.button1.ShowImage = true;
-            // 
-            // button2
-            // 
-            this.button2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button2.Image = global::Allegato3.Properties.Resources.icons8_trash_40;
-            this.button2.Label = "Annulla tutto";
-            this.button2.Name = "button2";
-            this.button2.ShowImage = true;
-            // 
-            // button3
-            // 
-            this.button3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button3.Image = global::Allegato3.Properties.Resources.icons8_binoculars_40;
-            this.button3.Label = "Modifiche recenti";
-            this.button3.Name = "button3";
-            this.button3.ShowImage = true;
-            // 
-            // button4
-            // 
-            this.button4.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button4.Image = global::Allegato3.Properties.Resources.icons8_home_40;
-            this.button4.Label = "Allegato 3 online";
-            this.button4.Name = "button4";
-            this.button4.ShowImage = true;
             // 
             // button6
             // 
@@ -185,6 +156,51 @@
             this.button9.Name = "button9";
             this.button9.ShowImage = true;
             // 
+            // button1
+            // 
+            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button1.Image = global::Allegato3.Properties.Resources.icons8_checked_40;
+            this.button1.Label = "Salva dati";
+            this.button1.Name = "button1";
+            this.button1.ShowImage = true;
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button1_Click);
+            // 
+            // button2
+            // 
+            this.button2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button2.Image = global::Allegato3.Properties.Resources.icons8_trash_40;
+            this.button2.Label = "Annulla tutto";
+            this.button2.Name = "button2";
+            this.button2.ShowImage = true;
+            // 
+            // button3
+            // 
+            this.button3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button3.Image = global::Allegato3.Properties.Resources.icons8_binoculars_40;
+            this.button3.Label = "Modifiche recenti";
+            this.button3.Name = "button3";
+            this.button3.ShowImage = true;
+            // 
+            // button4
+            // 
+            this.button4.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button4.Image = global::Allegato3.Properties.Resources.icons8_home_40;
+            this.button4.Label = "Allegato 3 online";
+            this.button4.Name = "button4";
+            this.button4.ShowImage = true;
+            //
+            // button5
+            //
+            this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click);
+            // 
+            // button10
+            // 
+            this.button10.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button10.Image = global::Allegato3.Properties.Resources.icons8_services_40;
+            this.button10.Label = "Connessione in corso";
+            this.button10.Name = "button10";
+            this.button10.ShowImage = true;
+            // 
             // Allegato3Ribbon
             // 
             this.Name = "Allegato3Ribbon";
@@ -203,6 +219,8 @@
             this.group4.PerformLayout();
             this.group5.ResumeLayout(false);
             this.group5.PerformLayout();
+            this.group6.ResumeLayout(false);
+            this.group6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -226,6 +244,7 @@
         private Microsoft.Office.Tools.Ribbon.RibbonButton button7;
         private Microsoft.Office.Tools.Ribbon.RibbonButton button8;
         private Microsoft.Office.Tools.Ribbon.RibbonButton button9;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button10;
     }
 
     partial class ThisRibbonCollection

@@ -113,6 +113,16 @@ namespace Allegato3.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_services_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-services-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_trash_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-trash-40", resourceCulture);
