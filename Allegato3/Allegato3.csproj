@@ -176,6 +176,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Allegato3_TemporaryKey.pfx" />
     <None Include="Properties\Settings.settings">
@@ -196,6 +197,24 @@
       <DependentUpon>ThisAddIn.Designer.xml</DependentUpon>
     </Compile>
     <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-bookmark-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-checked-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-trash-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-binoculars-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-home-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-document-16.png" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
