@@ -24,6 +24,11 @@ namespace Allegato3
             return (Excel.Worksheet)Application.ActiveSheet;
         }
 
+        // First of all generate the following method
+        // Then add to the project a Ribbon (Visual Designer) aka Barra Multifunzione 
+        // Configure ClickOnce trust prompt behavior: make sure everything is set to Enabled under Start -> Run -> regedt32.exe -> \HKEY_LOCAL_MACHINE\SOFTWARE\MICROSOFT\.NETFramework\Security\TrustManager\PromptingLevel
+        // More about ClickOnce at https://docs.microsoft.com/it-it/visualstudio/deployment/how-to-configure-the-clickonce-trust-prompt-behavior?view=vs-2019
+
         #region Codice generato da VSTO
 
         /// <summary>
