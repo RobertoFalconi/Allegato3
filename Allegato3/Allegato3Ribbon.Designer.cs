@@ -43,10 +43,6 @@
             this.group6 = this.Factory.CreateRibbonGroup();
             this.gallery1 = this.Factory.CreateRibbonGallery();
             this.button5 = this.Factory.CreateRibbonButton();
-            this.button6 = this.Factory.CreateRibbonButton();
-            this.button7 = this.Factory.CreateRibbonButton();
-            this.button8 = this.Factory.CreateRibbonButton();
-            this.button9 = this.Factory.CreateRibbonButton();
             this.button1 = this.Factory.CreateRibbonButton();
             this.button2 = this.Factory.CreateRibbonButton();
             this.button3 = this.Factory.CreateRibbonButton();
@@ -105,16 +101,12 @@
             // group6
             // 
             this.group6.Items.Add(this.button10);
-            this.group6.Label = "group6";
+            this.group6.Label = "Verifica la disponibilità";
             this.group6.Name = "group6";
             // 
             // gallery1
             // 
             this.gallery1.Buttons.Add(this.button5);
-            this.gallery1.Buttons.Add(this.button6);
-            this.gallery1.Buttons.Add(this.button7);
-            this.gallery1.Buttons.Add(this.button8);
-            this.gallery1.Buttons.Add(this.button9);
             this.gallery1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.gallery1.Image = global::Allegato3.Properties.Resources.icons8_bookmark_40;
             this.gallery1.Label = "Template";
@@ -124,37 +116,10 @@
             // button5
             // 
             this.button5.Image = global::Allegato3.Properties.Resources.icons8_document_16;
-            this.button5.Label = "Template 1";
+            this.button5.Label = "Decreto legge crescita";
             this.button5.Name = "button5";
             this.button5.ShowImage = true;
-            // 
-            // button6
-            // 
-            this.button6.Image = global::Allegato3.Properties.Resources.icons8_document_16;
-            this.button6.Label = "Template 2";
-            this.button6.Name = "button6";
-            this.button6.ShowImage = true;
-            // 
-            // button7
-            // 
-            this.button7.Image = global::Allegato3.Properties.Resources.icons8_document_16;
-            this.button7.Label = "Template 3";
-            this.button7.Name = "button7";
-            this.button7.ShowImage = true;
-            // 
-            // button8
-            // 
-            this.button8.Image = global::Allegato3.Properties.Resources.icons8_document_16;
-            this.button8.Label = "Template 4";
-            this.button8.Name = "button8";
-            this.button8.ShowImage = true;
-            // 
-            // button9
-            // 
-            this.button9.Image = global::Allegato3.Properties.Resources.icons8_document_16;
-            this.button9.Label = "Template 5";
-            this.button9.Name = "button9";
-            this.button9.ShowImage = true;
+            this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click);
             // 
             // button1
             // 
@@ -188,10 +153,6 @@
             this.button4.Label = "Allegato 3 online";
             this.button4.Name = "button4";
             this.button4.ShowImage = true;
-            //
-            // button5
-            //
-            this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click);
             // 
             // button10
             // 
@@ -240,10 +201,6 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button4;
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group6;
         private Microsoft.Office.Tools.Ribbon.RibbonButton button5;
-        private Microsoft.Office.Tools.Ribbon.RibbonButton button6;
-        private Microsoft.Office.Tools.Ribbon.RibbonButton button7;
-        private Microsoft.Office.Tools.Ribbon.RibbonButton button8;
-        private Microsoft.Office.Tools.Ribbon.RibbonButton button9;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button10;
     }
 
