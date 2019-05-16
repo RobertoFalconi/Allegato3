@@ -220,6 +220,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Allegato3_2_TemporaryKey.pfx" />
     <None Include="Allegato3_TemporaryKey.pfx" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -270,10 +271,10 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Allegato3_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>Allegato3_2_TemporaryKey.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>671357FD8A6FCCAC3429D1FF0D562E08EEB7FAC6</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>8510AA47ECBC36BFB266D09A1315234A6D2D1A90</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
