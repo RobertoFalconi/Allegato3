@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Ribbon;
+using System.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -47,8 +48,8 @@ namespace Allegato3
             httpWebRequest.Method = "POST";
             using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                //for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
-                Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
+                //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
+                for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
                 {
                     List<Tuple<dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic>>();
                     foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
@@ -56,7 +57,7 @@ namespace Allegato3
                         lista.Add(Tuple.Create<dynamic, dynamic>(elem.Formula, elem.Interior.Color));
                     }
                     fileExcel.Add(i, lista);
-                });
+                }
                 var jsonString = JsonConvert.SerializeObject(fileExcel);
                 streamWriter.Write(jsonString);
                 streamWriter.Flush();
@@ -90,12 +91,26 @@ namespace Allegato3
                 int i = 1;
                 foreach (var elemm in elem.Value)
                 {
-                    currentSheet.Cells[i,j].Value = elemm.FirstOrDefault().FirstOrDefault();
-                    if (!elemm.ElementAtOrDefault(1).FirstOrDefault().ToString().Equals("16777215")) currentSheet.Cells[i,j].Interior.Color = elemm.ElementAtOrDefault(1).FirstOrDefault();
+                    currentSheet.Cells[i, j].Value = elemm.FirstOrDefault().FirstOrDefault();
+                    if (!elemm.ElementAtOrDefault(1).FirstOrDefault().ToString().Equals("16777215")) currentSheet.Cells[i, j].Interior.Color = elemm.ElementAtOrDefault(1).FirstOrDefault();
                     i++;
                 }
                 j++;
             }
+
+            //JToken jsonObject = (JToken)JsonConvert.DeserializeObject(jsonString);
+            //Parallel.ForEach<JToken>(jsonObject, elem =>
+            //{
+            //    int i = 1;
+            //    JProperty key = (JProperty)elem;
+            //    int j = int.Parse(key.Name);
+            //    foreach (var elemm in elem.Value<JToken>())
+            //    {
+            //        currentSheet.Cells[i, j].Value = elemm.FirstOrDefault().FirstOrDefault().FirstOrDefault().Value<JToken>().ToString();
+            //        if (!elemm.FirstOrDefault().ElementAtOrDefault(1).FirstOrDefault().ToString().Equals("16777215")) currentSheet.Cells[i, j].Interior.Color = elemm.FirstOrDefault().ElementAtOrDefault(1).FirstOrDefault();
+            //        i++;
+            //    }
+            //});
 
             currentSheet.Columns.AutoFit();
             currentSheet.Rows.AutoFit();
