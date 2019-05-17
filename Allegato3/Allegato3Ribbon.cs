@@ -56,7 +56,7 @@ namespace Allegato3
                     listaColonne.Clear();
                     foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
                     {
-                        listaColonne.Append(new Tuple<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
+                        listaColonne.Add(new Tuple<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
                     }
                     fileExcel.Add(i, listaColonne);
                 }
