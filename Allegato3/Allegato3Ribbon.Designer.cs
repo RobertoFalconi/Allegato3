@@ -36,18 +36,19 @@
         {
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.group2 = this.Factory.CreateRibbonGroup();
-            this.group3 = this.Factory.CreateRibbonGroup();
-            this.group4 = this.Factory.CreateRibbonGroup();
-            this.group5 = this.Factory.CreateRibbonGroup();
-            this.group6 = this.Factory.CreateRibbonGroup();
             this.gallery1 = this.Factory.CreateRibbonGallery();
             this.button5 = this.Factory.CreateRibbonButton();
+            this.group2 = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
+            this.group3 = this.Factory.CreateRibbonGroup();
             this.button2 = this.Factory.CreateRibbonButton();
+            this.group4 = this.Factory.CreateRibbonGroup();
             this.button3 = this.Factory.CreateRibbonButton();
+            this.group5 = this.Factory.CreateRibbonGroup();
             this.button4 = this.Factory.CreateRibbonButton();
+            this.group6 = this.Factory.CreateRibbonGroup();
             this.button10 = this.Factory.CreateRibbonButton();
+            this.label1 = this.Factory.CreateRibbonLabel();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -74,36 +75,6 @@
             this.group1.Label = "Scarica un template";
             this.group1.Name = "group1";
             // 
-            // group2
-            // 
-            this.group2.Items.Add(this.button1);
-            this.group2.Label = "Conferma le operazioni";
-            this.group2.Name = "group2";
-            // 
-            // group3
-            // 
-            this.group3.Items.Add(this.button2);
-            this.group3.Label = "Annulla le operazioni";
-            this.group3.Name = "group3";
-            // 
-            // group4
-            // 
-            this.group4.Items.Add(this.button3);
-            this.group4.Label = "Controlla le modifiche";
-            this.group4.Name = "group4";
-            // 
-            // group5
-            // 
-            this.group5.Items.Add(this.button4);
-            this.group5.Label = "Collegati al sito web";
-            this.group5.Name = "group5";
-            // 
-            // group6
-            // 
-            this.group6.Items.Add(this.button10);
-            this.group6.Label = "Verifica la disponibilità";
-            this.group6.Name = "group6";
-            // 
             // gallery1
             // 
             this.gallery1.Buttons.Add(this.button5);
@@ -121,6 +92,13 @@
             this.button5.ShowImage = true;
             this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click);
             // 
+            // group2
+            // 
+            this.group2.Items.Add(this.button1);
+            this.group2.Items.Add(this.label1);
+            this.group2.Label = "Conferma le operazioni";
+            this.group2.Name = "group2";
+            // 
             // button1
             // 
             this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -130,6 +108,12 @@
             this.button1.ShowImage = true;
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button1_Click);
             // 
+            // group3
+            // 
+            this.group3.Items.Add(this.button2);
+            this.group3.Label = "Annulla le operazioni";
+            this.group3.Name = "group3";
+            // 
             // button2
             // 
             this.button2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -137,6 +121,12 @@
             this.button2.Label = "Annulla tutto";
             this.button2.Name = "button2";
             this.button2.ShowImage = true;
+            // 
+            // group4
+            // 
+            this.group4.Items.Add(this.button3);
+            this.group4.Label = "Controlla le modifiche";
+            this.group4.Name = "group4";
             // 
             // button3
             // 
@@ -146,6 +136,12 @@
             this.button3.Name = "button3";
             this.button3.ShowImage = true;
             // 
+            // group5
+            // 
+            this.group5.Items.Add(this.button4);
+            this.group5.Label = "Collegati al sito web";
+            this.group5.Name = "group5";
+            // 
             // button4
             // 
             this.button4.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -154,6 +150,12 @@
             this.button4.Name = "button4";
             this.button4.ShowImage = true;
             // 
+            // group6
+            // 
+            this.group6.Items.Add(this.button10);
+            this.group6.Label = "Verifica la disponibilità";
+            this.group6.Name = "group6";
+            // 
             // button10
             // 
             this.button10.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -161,6 +163,12 @@
             this.button10.Label = "Connessione in corso";
             this.button10.Name = "button10";
             this.button10.ShowImage = true;
+            // 
+            // label1
+            // 
+            this.label1.Label = "Salvataggio effettuato con successo";
+            this.label1.Name = "label1";
+            this.label1.ShowLabel = false;
             // 
             // Allegato3Ribbon
             // 
@@ -202,6 +210,7 @@
         internal Microsoft.Office.Tools.Ribbon.RibbonGroup group6;
         private Microsoft.Office.Tools.Ribbon.RibbonButton button5;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button10;
+        internal Microsoft.Office.Tools.Ribbon.RibbonLabel label1;
     }
 
     partial class ThisRibbonCollection
