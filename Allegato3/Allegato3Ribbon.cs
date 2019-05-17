@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Ribbon;
 using Newtonsoft.Json;
@@ -46,7 +47,8 @@ namespace Allegato3
             httpWebRequest.Method = "POST";
             using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
+                //for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
+                Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
                 {
                     List<Tuple<dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic>>();
                     foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
@@ -54,7 +56,7 @@ namespace Allegato3
                         lista.Add(Tuple.Create<dynamic, dynamic>(elem.Formula, elem.Interior.Color));
                     }
                     fileExcel.Add(i, lista);
-                }
+                });
                 var jsonString = JsonConvert.SerializeObject(fileExcel);
                 streamWriter.Write(jsonString);
                 streamWriter.Flush();
