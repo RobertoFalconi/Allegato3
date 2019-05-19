@@ -10,6 +10,8 @@ using Microsoft.Office.Tools.Ribbon;
 using System.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Threading;
+using ThreadedTimer = System.Threading.Timer;
 
 namespace Allegato3
 {
@@ -68,13 +70,17 @@ namespace Allegato3
 
             if (resp.Equals(HttpStatusCode.BadRequest))
             {
-                label1.Label = "Errore durante il salvataggio";
+                label1.Label = "Salvataggio fallito";
                 label1.ShowLabel = true;
+                button7.ShowImage = true;
+                timer1.Enabled = true;
             }
             else
             {
-                label1.Label = "Salvataggio effettuato con successo";
+                label1.Label = "Salvataggio effettuato";
                 label1.ShowLabel = true;
+                button6.ShowImage = true;
+                timer1.Enabled = true;
             }
 
             //using (var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse())
@@ -130,5 +136,10 @@ namespace Allegato3
             currentApp.ScreenUpdating = true;
         }
 
+        public void Timer1_Tick(object sender, EventArgs e)
+        {
+            label1.ShowLabel = false;
+            button6.ShowImage = false;
+        }
     }
 }

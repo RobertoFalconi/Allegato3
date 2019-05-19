@@ -34,12 +34,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
             this.gallery1 = this.Factory.CreateRibbonGallery();
             this.button5 = this.Factory.CreateRibbonButton();
             this.group2 = this.Factory.CreateRibbonGroup();
             this.button1 = this.Factory.CreateRibbonButton();
+            this.label1 = this.Factory.CreateRibbonLabel();
+            this.button6 = this.Factory.CreateRibbonButton();
+            this.button7 = this.Factory.CreateRibbonButton();
             this.group3 = this.Factory.CreateRibbonGroup();
             this.button2 = this.Factory.CreateRibbonButton();
             this.group4 = this.Factory.CreateRibbonGroup();
@@ -48,7 +52,7 @@
             this.button4 = this.Factory.CreateRibbonButton();
             this.group6 = this.Factory.CreateRibbonGroup();
             this.button10 = this.Factory.CreateRibbonButton();
-            this.label1 = this.Factory.CreateRibbonLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group2.SuspendLayout();
@@ -96,17 +100,39 @@
             // 
             this.group2.Items.Add(this.button1);
             this.group2.Items.Add(this.label1);
+            this.group2.Items.Add(this.button6);
+            this.group2.Items.Add(this.button7);
             this.group2.Label = "Conferma le operazioni";
             this.group2.Name = "group2";
             // 
             // button1
             // 
             this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Image = global::Allegato3.Properties.Resources.icons8_checked_40;
+            this.button1.Image = global::Allegato3.Properties.Resources.icons8_plus_40;
             this.button1.Label = "Salva dati";
             this.button1.Name = "button1";
             this.button1.ShowImage = true;
             this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button1_Click);
+            // 
+            // label1
+            // 
+            this.label1.Label = "Salvataggio effettuato";
+            this.label1.Name = "label1";
+            this.label1.ShowLabel = false;
+            // 
+            // button6
+            // 
+            this.button6.Image = global::Allegato3.Properties.Resources.icons8_checked_16;
+            this.button6.Label = " ";
+            this.button6.Name = "button6";
+            this.button6.ShowLabel = false;
+            // 
+            // button7
+            // 
+            this.button7.Image = global::Allegato3.Properties.Resources.icons8_cancel_16;
+            this.button7.Label = " ";
+            this.button7.Name = "button7";
+            this.button7.ShowLabel = false;
             // 
             // group3
             // 
@@ -164,11 +190,10 @@
             this.button10.Name = "button10";
             this.button10.ShowImage = true;
             // 
-            // label1
+            // timer1
             // 
-            this.label1.Label = "Salvataggio effettuato con successo";
-            this.label1.Name = "label1";
-            this.label1.ShowLabel = false;
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
             // 
             // Allegato3Ribbon
             // 
@@ -211,6 +236,9 @@
         private Microsoft.Office.Tools.Ribbon.RibbonButton button5;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button10;
         internal Microsoft.Office.Tools.Ribbon.RibbonLabel label1;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button6;
+        internal Microsoft.Office.Tools.Ribbon.RibbonButton button7;
+        private System.Windows.Forms.Timer timer1;
     }
 
     partial class ThisRibbonCollection

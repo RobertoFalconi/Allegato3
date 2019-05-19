@@ -83,6 +83,26 @@ namespace Allegato3.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_cancel_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-cancel-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_checked_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-checked-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_checked_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-checked-40", resourceCulture);
@@ -106,6 +126,16 @@ namespace Allegato3.Properties {
         internal static System.Drawing.Bitmap icons8_home_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-home-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_plus_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-plus-40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
