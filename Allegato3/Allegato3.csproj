@@ -204,6 +204,7 @@
     <Compile Include="Allegato3Ribbon.Designer.cs">
       <DependentUpon>Allegato3Ribbon.cs</DependentUpon>
     </Compile>
+    <Compile Include="JsonString.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
