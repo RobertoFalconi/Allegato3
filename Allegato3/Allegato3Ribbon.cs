@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Threading;
 using ThreadedTimer = System.Threading.Timer;
+using System.Runtime.InteropServices;
 
 namespace Allegato3
 {
@@ -43,23 +44,39 @@ namespace Allegato3
         {
             Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
 
-            Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>> fileExcel = new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>();
+            Microsoft.Office.Interop.Excel.Application oXL;
+            Microsoft.Office.Interop.Excel.Workbook oWB;
+            Microsoft.Office.Interop.Excel.Worksheet oSheet;
+            oXL = (Microsoft.Office.Interop.Excel.Application)Marshal.GetActiveObject("Excel.Application");
+            oXL.Visible = true;
+            oWB = (Microsoft.Office.Interop.Excel.Workbook)oXL.ActiveWorkbook;
+            dynamic docProps = oWB.CustomDocumentProperties;
+
+            Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>> foglioExcel = new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>();
+            Dictionary<int, Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fileExcel = new Dictionary<int, Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
 
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "POST";
             using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
-                //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
-                for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
+                for (int s = 0; s < oWB.Sheets.Count; s++)
                 {
-                    List<Tuple<dynamic, dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic, dynamic>>();
-                    foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
+                    foglioExcel.Clear();
+                    currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s+1]);
+                    //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
+                    for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
                     {
-                        lista.Add(Tuple.Create<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
+                        List<Tuple<dynamic, dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic, dynamic>>();
+                        foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
+                        {
+                            lista.Add(Tuple.Create<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
+                        }
+                        foglioExcel.Add(i, lista);
                     }
-                    fileExcel.Add(i, lista);
+                    fileExcel.Add(s, foglioExcel);
                 }
+                
                 var jsonString = JsonConvert.SerializeObject(fileExcel);
                 streamWriter.Write(jsonString);
                 streamWriter.Flush();
