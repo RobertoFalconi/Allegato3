@@ -133,8 +133,8 @@ namespace Allegato3
                         for (int i = 0; i < colonna.Values().Count(); i++)
                         {
                             currentSheet.Cells[i+1, j].Value = colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(0).ElementAtOrDefault(0); // il secondo è l'elm e il terzo l'item
-                            //if (!elemm.ElementAtOrDefault(1).FirstOrDefault().ToString().Equals("16777215")) currentSheet.Cells[i, j].Interior.Color = elemm.ElementAtOrDefault(1).FirstOrDefault();
-                            //if (elemm.ElementAtOrDefault(2).FirstOrDefault().ToString().Equals("True")) currentSheet.Cells[i, j].Font.Bold = true;
+                            if (!colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(1).FirstOrDefault().ToString().Equals("16777215")) currentSheet.Cells[i+1, j].Interior.Color = colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(1).FirstOrDefault();
+                            if (colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(2).FirstOrDefault().ToString().Equals("True")) currentSheet.Cells[i+1, j].Font.Bold = true;
                         }
                         j++;
                     }
