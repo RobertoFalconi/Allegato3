@@ -53,7 +53,8 @@ namespace Allegato3
             dynamic docProps = oWB.CustomDocumentProperties;
 
             Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>> foglioExcel = new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>();
-            Dictionary<int, Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fileExcel = new Dictionary<int, Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
+            List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
+            Dictionary<int, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<int, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
 
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
             httpWebRequest.ContentType = "application/json";
@@ -62,8 +63,8 @@ namespace Allegato3
             {
                 for (int s = 0; s < oWB.Sheets.Count; s++)
                 {
-                    foglioExcel.Clear();
-                    currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s+1]);
+                    fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
+                    currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s + 1]);
                     //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
                     for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
                     {
@@ -72,11 +73,13 @@ namespace Allegato3
                         {
                             lista.Add(Tuple.Create<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
                         }
-                        foglioExcel.Add(i, lista);
+                        fogliExcel[s].Add(i, lista);
                     }
-                    fileExcel.Add(s, foglioExcel);
                 }
-                
+                fileExcel.Add(0, fogliExcel);
+
+
+
                 var jsonString = JsonConvert.SerializeObject(fileExcel);
                 streamWriter.Write(jsonString);
                 streamWriter.Flush();
