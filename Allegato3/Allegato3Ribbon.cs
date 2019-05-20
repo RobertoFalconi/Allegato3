@@ -48,12 +48,15 @@ namespace Allegato3
             oWB = oXL.ActiveWorkbook;
             dynamic docProps = oWB.CustomDocumentProperties;
 
+            //string nomeFoglio = editBox1.Text; // TODO: non è detto che editBox1.Text sia compilato
+            string nomeFoglio = lblFoglioId.Label;
+
             List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
-            Dictionary<int, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<int, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
+            Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
 
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
             httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
+            httpWebRequest.Method = "PUT";
             using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
             {
                 for (int s = 0; s < oWB.Sheets.Count; s++)
@@ -71,7 +74,7 @@ namespace Allegato3
                         fogliExcel[s].Add(i, lista);
                     }
                 }
-                fileExcel.Add(0, fogliExcel);
+                fileExcel.Add(nomeFoglio, fogliExcel);
 
 
 
@@ -127,6 +130,8 @@ namespace Allegato3
             // TODO: implementare get jsonString
             string jsonString = JsonString.jsonString;
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
+
+            lblFoglioId.Label = jsonObject.Properties().Select(p => p.Name).FirstOrDefault();
 
             foreach (var fileExcel in jsonObject)
             {
@@ -212,7 +217,19 @@ namespace Allegato3
             group2.Visible = true;
             group5.Visible = true;
 
+            if (button2.Visible && editBox1.Visible)
+            {
+                button2.Visible = false;
+                editBox1.Visible = false;
+            }
+            else
+            {
+                button2.Visible = true;
+                editBox1.Visible = true;
+            }
+
             string nomeFoglio = editBox1.Text;
+            lblFoglioId.Label = nomeFoglio;
 
             Application oXL;
             Workbook oWB;

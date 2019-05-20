@@ -89,8 +89,35 @@ namespace Allegato3API.Controllers
         }
 
         // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
+        public async Task<HttpResponseMessage> Put(HttpRequestMessage request)
         {
+            string result;
+            try
+            {
+                result = request.Content.ReadAsStringAsync().Result;
+                if (result == null)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+
+            JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
+            Files files = await db.Files.FindAsync(jsonObject.Properties().Select(p => p.Name).FirstOrDefault());
+
+            if (!ModelState.IsValid)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+
+            files.JsonString = result;
+            db.Entry(files).State = EntityState.Modified;
+            await db.SaveChangesAsync();
+
+            return new HttpResponseMessage(HttpStatusCode.Accepted);
         }
 
         // DELETE api/values/5

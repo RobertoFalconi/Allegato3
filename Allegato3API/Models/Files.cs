@@ -11,10 +11,11 @@ namespace Allegato3API.Models
     public class Files
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int FileID { get; set; }
-
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public string Nome { get; set; }
+
+        //[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        //public int FileID { get; set; }
 
         public string JsonString { get; set; }
 
