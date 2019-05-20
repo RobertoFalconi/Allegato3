@@ -13,7 +13,7 @@ namespace Allegato3API.Controllers
 {
     public class FilesController : Controller
     {
-        private DatabaseContext db = new DatabaseContext();
+        private Allegato3APIContext db = new Allegato3APIContext();
 
         // GET: Files
         public async Task<ActionResult> Index()

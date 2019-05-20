@@ -184,9 +184,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Allegato3APIContext.cs" />
-    <Compile Include="Models\DatabaseContext.cs" />
     <Compile Include="Models\Files.cs" />
-    <Compile Include="Models\Templates.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

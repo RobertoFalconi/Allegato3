@@ -291,6 +291,15 @@
   <ItemGroup>
     <None Include="Resources\icons8-delete-16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-save-close-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-data-sheet-filled-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-data-sheet-filled-40 %281%29.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -14,6 +14,9 @@ namespace Allegato3API.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int FileID { get; set; }
 
+        public string Nome { get; set; }
+
         public string JsonString { get; set; }
+
     }
 }

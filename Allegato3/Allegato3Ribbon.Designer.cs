@@ -69,12 +69,12 @@ namespace Allegato3
             this.button6 = this.Factory.CreateRibbonButton();
             this.button4 = this.Factory.CreateRibbonButton();
             this.group4 = this.Factory.CreateRibbonGroup();
-            this.gallery3 = this.Factory.CreateRibbonGallery();
-            this.button2 = this.Factory.CreateRibbonButton();
-            this.button3 = this.Factory.CreateRibbonButton();
+            this.button5 = this.Factory.CreateRibbonButton();
             this.group6 = this.Factory.CreateRibbonGroup();
             this.button10 = this.Factory.CreateRibbonButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
+            this.editBox1 = this.Factory.CreateRibbonEditBox();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group3.SuspendLayout();
@@ -134,7 +134,7 @@ namespace Allegato3
             // button1
             // 
             this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Image = global::Allegato3.Properties.Resources.icons8_plus_40;
+            this.button1.Image = global::Allegato3.Properties.Resources.icons8_save_close_40;
             this.button1.Label = "Salva dati";
             this.button1.Name = "button1";
             this.button1.ShowImage = true;
@@ -173,33 +173,19 @@ namespace Allegato3
             // 
             // group4
             // 
-            this.group4.Items.Add(this.gallery3);
+            this.group4.Items.Add(this.button5);
+            this.group4.Items.Add(this.editBox1);
             this.group4.Label = "Crea nuovo template";
             this.group4.Name = "group4";
             // 
-            // gallery3
+            // button5
             // 
-            this.gallery3.Buttons.Add(this.button2);
-            this.gallery3.Buttons.Add(this.button3);
-            this.gallery3.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.gallery3.Image = global::Allegato3.Properties.Resources.icons8_new_view_40;
-            this.gallery3.Label = "Nuovo template";
-            this.gallery3.Name = "gallery3";
-            this.gallery3.ShowImage = true;
-            // 
-            // button2
-            // 
-            this.button2.Image = global::Allegato3.Properties.Resources.icons8_file_16;
-            this.button2.Label = "Crea template da documento vuoto";
-            this.button2.Name = "button2";
-            this.button2.ShowImage = true;
-            // 
-            // button3
-            // 
-            this.button3.Image = global::Allegato3.Properties.Resources.icons8_document_161;
-            this.button3.Label = "Crea template da questo documento";
-            this.button3.Name = "button3";
-            this.button3.ShowImage = true;
+            this.button5.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button5.Image = global::Allegato3.Properties.Resources.icons8_data_sheet_filled_40__1_;
+            this.button5.Label = "Salva file corrente come nuovo template";
+            this.button5.Name = "button5";
+            this.button5.ShowImage = true;
+            this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click_1);
             // 
             // group6
             // 
@@ -219,6 +205,16 @@ namespace Allegato3
             // 
             this.timer1.Interval = 2000;
             this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.FolderBrowserDialog1_HelpRequest);
+            // 
+            // editBox1
+            // 
+            this.editBox1.Label = "Inserisci nome del template";
+            this.editBox1.Name = "editBox1";
+            this.editBox1.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.EditBox1_TextChanged);
             // 
             // Allegato3Ribbon
             // 
@@ -261,9 +257,9 @@ namespace Allegato3
         private System.Windows.Forms.Timer timer1;
         internal Microsoft.Office.Tools.Ribbon.RibbonButton button6;
         internal Microsoft.Office.Tools.Ribbon.RibbonGallery gallery2;
-        internal Microsoft.Office.Tools.Ribbon.RibbonGallery gallery3;
-        private Microsoft.Office.Tools.Ribbon.RibbonButton button2;
-        private Microsoft.Office.Tools.Ribbon.RibbonButton button3;
+        internal RibbonButton button5;
+        private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
+        internal RibbonEditBox editBox1;
     }
 
     partial class ThisRibbonCollection

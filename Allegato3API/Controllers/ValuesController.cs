@@ -12,6 +12,8 @@ using System.Web.Http.ModelBinding;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Routing;
 using Allegato3API.Models;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace Allegato3API.Controllers
 {
@@ -70,7 +72,9 @@ namespace Allegato3API.Controllers
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
 
+            JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
             Files files = new Files();
+            //files.Nome = result.FirstOrDefault(); TODO: trovare il nome che è la prima chiave
             files.JsonString = result;
 
             if (!ModelState.IsValid)

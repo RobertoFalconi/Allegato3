@@ -180,5 +180,86 @@ namespace Allegato3
         {
             // TODO: implementare eliminazione di un template
         }
+
+        private void Button5_Click_1(object sender, RibbonControlEventArgs e)
+        {
+            Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
+
+            string nomeFoglio = editBox1.Text;
+
+            Application oXL;
+            Workbook oWB;
+            Worksheet oSheet;
+            oXL = (Application)Marshal.GetActiveObject("Excel.Application");
+            oXL.Visible = true;
+            oWB = oXL.ActiveWorkbook;
+            dynamic docProps = oWB.CustomDocumentProperties;
+
+            List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
+            Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
+
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "POST";
+            using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            {
+                for (int s = 0; s < oWB.Sheets.Count; s++)
+                {
+                    fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
+                    currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s + 1]);
+                    //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
+                    for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
+                    {
+                        List<Tuple<dynamic, dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic, dynamic>>();
+                        foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
+                        {
+                            lista.Add(Tuple.Create<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
+                        }
+                        fogliExcel[s].Add(i, lista);
+                    }
+                }
+                fileExcel.Add(nomeFoglio, fogliExcel);
+
+
+
+                var jsonString = JsonConvert.SerializeObject(fileExcel);
+                streamWriter.Write(jsonString);
+                streamWriter.Flush();
+                streamWriter.Close();
+            }
+
+            WebResponse resp = httpWebRequest.GetResponse();
+
+            if (resp.Equals(HttpStatusCode.BadRequest))
+            {
+                label1.Label = "Salvataggio fallito";
+                label1.ShowLabel = true;
+                timer1.Enabled = true;
+            }
+            else
+            {
+                label1.Label = "Salvataggio effettuato";
+                label1.ShowLabel = true;
+                timer1.Enabled = true;
+            }
+
+            //using (var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse())
+            //{
+            //    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+            //    {
+            //        var result = streamReader.ReadToEnd();
+            //    }
+            //}
+        }
+
+        private void FolderBrowserDialog1_HelpRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditBox1_TextChanged(object sender, RibbonControlEventArgs e)
+        {
+
+        }
     }
 }

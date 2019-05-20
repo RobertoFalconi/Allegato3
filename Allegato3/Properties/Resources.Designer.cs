@@ -113,6 +113,26 @@ namespace Allegato3.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_data_sheet_filled_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-data-sheet-filled-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_data_sheet_filled_40__1_ {
+            get {
+                object obj = ResourceManager.GetObject("icons8-data-sheet-filled-40 (1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_delete_16 {
             get {
                 object obj = ResourceManager.GetObject("icons8-delete-16", resourceCulture);
@@ -196,6 +216,16 @@ namespace Allegato3.Properties {
         internal static System.Drawing.Bitmap icons8_plus_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-plus-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_save_close_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-save-close-40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
