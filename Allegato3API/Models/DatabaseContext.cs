@@ -9,7 +9,7 @@ namespace Allegato3API.Models
     public class DatabaseContext : DbContext
     {
         public DbSet<Templates> Template { get; set; }
-        public DbSet<Templates> File { get; set; }
+        public DbSet<Files> File { get; set; }
 
 
         public DatabaseContext() : base("DefaultConnection")
