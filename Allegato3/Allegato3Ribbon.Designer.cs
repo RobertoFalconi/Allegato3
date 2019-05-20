@@ -22,13 +22,16 @@ namespace Allegato3
             for (int i = 0; i < jsonObject.First.Values().Count(); i++)
             {
                 var rbTemp = this.Factory.CreateRibbonButton();
-
-                //rbTemp.Name = (string)jsonObject.First.Values().ElementAtOrDefault(i).FirstOrDefault();
-                //rbTemp.Description = (string) jsonObject.First.Values().ElementAtOrDefault(i).FirstOrDefault();
                 rbTemp.Label = (string)jsonObject.First.Values().ElementAtOrDefault(i).FirstOrDefault();
                 rbTemp.Image = global::Allegato3.Properties.Resources.icons8_document_16;
                 rbTemp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click);
                 this.gallery1.Buttons.Add((RibbonButton)rbTemp);
+
+                var rbTemp2 = this.Factory.CreateRibbonButton();
+                rbTemp2.Label = "Elimina "+ (string)jsonObject.First.Values().ElementAtOrDefault(i).FirstOrDefault();
+                rbTemp2.Image = global::Allegato3.Properties.Resources.icons8_delete_16;
+                rbTemp2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.EliminaTemplate);
+                this.gallery2.Buttons.Add((RibbonButton)rbTemp2);
             }
         }
 

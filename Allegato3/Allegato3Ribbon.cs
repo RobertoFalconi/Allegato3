@@ -149,7 +149,7 @@ namespace Allegato3
                     if (s < fileExcel.Value.Count())
                     {
                         Worksheet newWorksheet;
-                        newWorksheet = (Worksheet)currentApp.Worksheets.Add(After:currentSheet);
+                        newWorksheet = (Worksheet)currentApp.Worksheets.Add(After: currentSheet);
                         currentSheet = newWorksheet;
                     }
                 }
@@ -167,9 +167,15 @@ namespace Allegato3
         public void Timer1_Tick(object sender, EventArgs e)
         {
             label1.ShowLabel = false;
+            timer1.Dispose();
         }
 
         private void Button3_Click(object sender, RibbonControlEventArgs e)
+        {
+
+        }
+
+        private void EliminaTemplate(object sender, RibbonControlEventArgs e)
         {
 
         }

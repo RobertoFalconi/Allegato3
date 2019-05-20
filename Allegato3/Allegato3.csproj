@@ -288,6 +288,9 @@
   <ItemGroup>
     <None Include="Resources\icons8-document-161.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-delete-16.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
