@@ -4,14 +4,10 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Threading.Tasks;
 using Microsoft.Office.Interop.Excel;
 using Microsoft.Office.Tools.Ribbon;
-using System.Json;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Threading;
-using ThreadedTimer = System.Threading.Timer;
 using System.Runtime.InteropServices;
 
 namespace Allegato3
@@ -32,10 +28,6 @@ namespace Allegato3
                 }
 
                 Globals.Ribbons.Allegato3Ribbon.button10.Label = "Connessione riuscita";
-
-                //string jsonString = "";
-                //object jsonObject
-
 
             }
             catch (Exception ex)
@@ -123,7 +115,6 @@ namespace Allegato3
 
             Application currentApp = Globals.ThisAddIn.Application;
             currentApp.ScreenUpdating = false;
-            currentSheet.Name = button5.Label;
 
             Application oXL;
             Workbook oWB;
