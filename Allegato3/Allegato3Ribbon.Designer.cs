@@ -16,6 +16,7 @@ namespace Allegato3
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
+            // TODO: fare una query READ sul db per tirare su FileID e Nome
             string jsonString = "{ \"templates\": { \"1\": \"Decreto legge crescita\", \"2\": \"Secondo template\" }}";
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
 
@@ -23,12 +24,14 @@ namespace Allegato3
             {
                 var rbTemp = this.Factory.CreateRibbonButton();
                 rbTemp.Label = (string)jsonObject.First.Values().ElementAtOrDefault(i).FirstOrDefault();
+                //rbTemp.Tag = query.ID; 
                 rbTemp.Image = global::Allegato3.Properties.Resources.icons8_document_16;
                 rbTemp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click);
                 this.gallery1.Buttons.Add((RibbonButton)rbTemp);
 
                 var rbTemp2 = this.Factory.CreateRibbonButton();
                 rbTemp2.Label = "Elimina "+ (string)jsonObject.First.Values().ElementAtOrDefault(i).FirstOrDefault();
+                //rbTemp2.Tag = query.ID;
                 rbTemp2.Image = global::Allegato3.Properties.Resources.icons8_delete_16;
                 rbTemp2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.EliminaTemplate);
                 this.gallery2.Buttons.Add((RibbonButton)rbTemp2);

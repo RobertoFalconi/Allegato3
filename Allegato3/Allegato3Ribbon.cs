@@ -209,6 +209,9 @@ namespace Allegato3
         {
             Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
 
+            group2.Visible = true;
+            group5.Visible = true;
+
             string nomeFoglio = editBox1.Text;
 
             Application oXL;
