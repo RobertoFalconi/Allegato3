@@ -59,22 +59,23 @@ namespace Allegato3
             this.components = new System.ComponentModel.Container();
             this.tab1 = this.Factory.CreateRibbonTab();
             this.group1 = this.Factory.CreateRibbonGroup();
-            this.gallery1 = this.Factory.CreateRibbonGallery();
             this.group3 = this.Factory.CreateRibbonGroup();
-            this.gallery2 = this.Factory.CreateRibbonGallery();
             this.group2 = this.Factory.CreateRibbonGroup();
-            this.button1 = this.Factory.CreateRibbonButton();
             this.label1 = this.Factory.CreateRibbonLabel();
             this.group5 = this.Factory.CreateRibbonGroup();
-            this.button6 = this.Factory.CreateRibbonButton();
-            this.button4 = this.Factory.CreateRibbonButton();
             this.group4 = this.Factory.CreateRibbonGroup();
-            this.button5 = this.Factory.CreateRibbonButton();
+            this.editBox1 = this.Factory.CreateRibbonEditBox();
             this.group6 = this.Factory.CreateRibbonGroup();
-            this.button10 = this.Factory.CreateRibbonButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.editBox1 = this.Factory.CreateRibbonEditBox();
+            this.gallery1 = this.Factory.CreateRibbonGallery();
+            this.gallery2 = this.Factory.CreateRibbonGallery();
+            this.button1 = this.Factory.CreateRibbonButton();
+            this.button6 = this.Factory.CreateRibbonButton();
+            this.button4 = this.Factory.CreateRibbonButton();
+            this.button5 = this.Factory.CreateRibbonButton();
+            this.button2 = this.Factory.CreateRibbonButton();
+            this.button10 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group3.SuspendLayout();
@@ -101,27 +102,11 @@ namespace Allegato3
             this.group1.Label = "Scarica un template";
             this.group1.Name = "group1";
             // 
-            // gallery1
-            // 
-            this.gallery1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.gallery1.Image = global::Allegato3.Properties.Resources.icons8_bookmark_40;
-            this.gallery1.Label = "Carica template";
-            this.gallery1.Name = "gallery1";
-            this.gallery1.ShowImage = true;
-            // 
             // group3
             // 
             this.group3.Items.Add(this.gallery2);
             this.group3.Label = "Elimina il template";
             this.group3.Name = "group3";
-            // 
-            // gallery2
-            // 
-            this.gallery2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.gallery2.Image = global::Allegato3.Properties.Resources.icons8_trash_40;
-            this.gallery2.Label = "Elimina template";
-            this.gallery2.Name = "gallery2";
-            this.gallery2.ShowImage = true;
             // 
             // group2
             // 
@@ -130,15 +115,6 @@ namespace Allegato3
             this.group2.Label = "Conferma le operazioni";
             this.group2.Name = "group2";
             this.group2.Visible = false;
-            // 
-            // button1
-            // 
-            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
-            this.button1.Image = global::Allegato3.Properties.Resources.icons8_save_close_40;
-            this.button1.Label = "Salva dati";
-            this.button1.Name = "button1";
-            this.button1.ShowImage = true;
-            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button1_Click);
             // 
             // label1
             // 
@@ -153,6 +129,62 @@ namespace Allegato3
             this.group5.Label = "Libera l\'accesso a colleghi";
             this.group5.Name = "group5";
             this.group5.Visible = false;
+            // 
+            // group4
+            // 
+            this.group4.Items.Add(this.button5);
+            this.group4.Items.Add(this.editBox1);
+            this.group4.Items.Add(this.button2);
+            this.group4.Label = "Crea nuovo template";
+            this.group4.Name = "group4";
+            // 
+            // editBox1
+            // 
+            this.editBox1.Label = "Inserisci nome del template";
+            this.editBox1.Name = "editBox1";
+            this.editBox1.Text = null;
+            this.editBox1.Visible = false;
+            this.editBox1.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.EditBox1_TextChanged);
+            // 
+            // group6
+            // 
+            this.group6.Items.Add(this.button10);
+            this.group6.Label = "Verifica la disponibilità";
+            this.group6.Name = "group6";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 2000;
+            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
+            // 
+            // folderBrowserDialog1
+            // 
+            this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.FolderBrowserDialog1_HelpRequest);
+            // 
+            // gallery1
+            // 
+            this.gallery1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.gallery1.Image = global::Allegato3.Properties.Resources.icons8_bookmark_40;
+            this.gallery1.Label = "Carica template";
+            this.gallery1.Name = "gallery1";
+            this.gallery1.ShowImage = true;
+            // 
+            // gallery2
+            // 
+            this.gallery2.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.gallery2.Image = global::Allegato3.Properties.Resources.icons8_trash_40;
+            this.gallery2.Label = "Elimina template";
+            this.gallery2.Name = "gallery2";
+            this.gallery2.ShowImage = true;
+            // 
+            // button1
+            // 
+            this.button1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
+            this.button1.Image = global::Allegato3.Properties.Resources.icons8_save_close_40;
+            this.button1.Label = "Salva dati";
+            this.button1.Name = "button1";
+            this.button1.ShowImage = true;
+            this.button1.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button1_Click);
             // 
             // button6
             // 
@@ -171,13 +203,6 @@ namespace Allegato3
             this.button4.Name = "button4";
             this.button4.ShowImage = true;
             // 
-            // group4
-            // 
-            this.group4.Items.Add(this.button5);
-            this.group4.Items.Add(this.editBox1);
-            this.group4.Label = "Crea nuovo template";
-            this.group4.Name = "group4";
-            // 
             // button5
             // 
             this.button5.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
@@ -187,11 +212,12 @@ namespace Allegato3
             this.button5.ShowImage = true;
             this.button5.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click_1);
             // 
-            // group6
+            // button2
             // 
-            this.group6.Items.Add(this.button10);
-            this.group6.Label = "Verifica la disponibilità";
-            this.group6.Name = "group6";
+            this.button2.Label = "Conferma";
+            this.button2.Name = "button2";
+            this.button2.Visible = false;
+            this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button2_Click);
             // 
             // button10
             // 
@@ -200,21 +226,6 @@ namespace Allegato3
             this.button10.Label = "Connessione in corso";
             this.button10.Name = "button10";
             this.button10.ShowImage = true;
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 2000;
-            this.timer1.Tick += new System.EventHandler(this.Timer1_Tick);
-            // 
-            // folderBrowserDialog1
-            // 
-            this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.FolderBrowserDialog1_HelpRequest);
-            // 
-            // editBox1
-            // 
-            this.editBox1.Label = "Inserisci nome del template";
-            this.editBox1.Name = "editBox1";
-            this.editBox1.TextChanged += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.EditBox1_TextChanged);
             // 
             // Allegato3Ribbon
             // 
@@ -260,6 +271,7 @@ namespace Allegato3
         internal RibbonButton button5;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
         internal RibbonEditBox editBox1;
+        internal RibbonButton button2;
     }
 
     partial class ThisRibbonCollection

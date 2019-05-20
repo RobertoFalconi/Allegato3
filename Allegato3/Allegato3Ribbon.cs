@@ -183,6 +183,30 @@ namespace Allegato3
 
         private void Button5_Click_1(object sender, RibbonControlEventArgs e)
         {
+            if (button2.Visible && editBox1.Visible)
+            {
+                button2.Visible = false;
+                editBox1.Visible = false;
+            }
+            else
+            {
+                button2.Visible = true;
+                editBox1.Visible = true;
+            }
+        }
+
+        private void FolderBrowserDialog1_HelpRequest(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EditBox1_TextChanged(object sender, RibbonControlEventArgs e)
+        {
+
+        }
+
+        private void Button2_Click(object sender, RibbonControlEventArgs e)
+        {
             Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
 
             string nomeFoglio = editBox1.Text;
@@ -250,16 +274,6 @@ namespace Allegato3
             //        var result = streamReader.ReadToEnd();
             //    }
             //}
-        }
-
-        private void FolderBrowserDialog1_HelpRequest(object sender, EventArgs e)
-        {
-
-        }
-
-        private void EditBox1_TextChanged(object sender, RibbonControlEventArgs e)
-        {
-
         }
     }
 }
