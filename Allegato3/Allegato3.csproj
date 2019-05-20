@@ -273,6 +273,21 @@
   <ItemGroup>
     <None Include="Resources\icons8-cancel-16.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-new-view-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-edit-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-person-learning-by-reading-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-file-16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-document-161.png" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -285,7 +300,7 @@
     </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>4012E075667AD91C12A1B83E9E6065969B5B5F10</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>1292861158D2629CC17967B803287C2850B3F98F</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

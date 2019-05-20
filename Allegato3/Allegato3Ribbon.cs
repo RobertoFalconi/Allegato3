@@ -33,6 +33,10 @@ namespace Allegato3
 
                 Globals.Ribbons.Allegato3Ribbon.button10.Label = "Connessione riuscita";
 
+                //string jsonString = "";
+                //object jsonObject
+
+
             }
             catch (Exception ex)
             {
@@ -44,12 +48,12 @@ namespace Allegato3
         {
             Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
 
-            Microsoft.Office.Interop.Excel.Application oXL;
-            Microsoft.Office.Interop.Excel.Workbook oWB;
-            Microsoft.Office.Interop.Excel.Worksheet oSheet;
-            oXL = (Microsoft.Office.Interop.Excel.Application)Marshal.GetActiveObject("Excel.Application");
+            Application oXL;
+            Workbook oWB;
+            Worksheet oSheet;
+            oXL = (Application)Marshal.GetActiveObject("Excel.Application");
             oXL.Visible = true;
-            oWB = (Microsoft.Office.Interop.Excel.Workbook)oXL.ActiveWorkbook;
+            oWB = oXL.ActiveWorkbook;
             dynamic docProps = oWB.CustomDocumentProperties;
 
             List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
@@ -91,14 +95,12 @@ namespace Allegato3
             {
                 label1.Label = "Salvataggio fallito";
                 label1.ShowLabel = true;
-                button7.ShowImage = true;
                 timer1.Enabled = true;
             }
             else
             {
                 label1.Label = "Salvataggio effettuato";
                 label1.ShowLabel = true;
-                button6.ShowImage = true;
                 timer1.Enabled = true;
             }
 
@@ -113,6 +115,10 @@ namespace Allegato3
 
         private void Button5_Click(object sender, RibbonControlEventArgs e)
         {
+
+            group2.Visible = true;
+            group5.Visible = true;
+
             Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
 
             Application currentApp = Globals.ThisAddIn.Application;
@@ -170,7 +176,11 @@ namespace Allegato3
         public void Timer1_Tick(object sender, EventArgs e)
         {
             label1.ShowLabel = false;
-            button6.ShowImage = false;
+        }
+
+        private void Button3_Click(object sender, RibbonControlEventArgs e)
+        {
+
         }
     }
 }

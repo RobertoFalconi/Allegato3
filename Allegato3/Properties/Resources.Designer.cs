@@ -123,9 +123,59 @@ namespace Allegato3.Properties {
         /// <summary>
         ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap icons8_document_161 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-document-161", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_edit_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-edit-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_file_16 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-file-16", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icons8_home_40 {
             get {
                 object obj = ResourceManager.GetObject("icons8-home-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_new_view_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-new-view-40", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Cerca una risorsa localizzata di tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap icons8_person_learning_by_reading_40 {
+            get {
+                object obj = ResourceManager.GetObject("icons8-person-learning-by-reading-40", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
