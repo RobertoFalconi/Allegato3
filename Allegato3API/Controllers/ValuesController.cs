@@ -74,7 +74,7 @@ namespace Allegato3API.Controllers
 
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
             Files files = new Files();
-            //files.Nome = result.FirstOrDefault(); TODO: trovare il nome che è la prima chiave
+            files.Nome = jsonObject.Properties().Select(p => p.Name).FirstOrDefault();
             files.JsonString = result;
 
             if (!ModelState.IsValid)
