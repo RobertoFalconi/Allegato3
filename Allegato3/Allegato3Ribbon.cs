@@ -124,6 +124,7 @@ namespace Allegato3
             oWB = oXL.ActiveWorkbook;
             dynamic docProps = oWB.CustomDocumentProperties;
 
+            // TODO: implementare get jsonString
             string jsonString = JsonString.jsonString;
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
 
@@ -177,7 +178,7 @@ namespace Allegato3
 
         private void EliminaTemplate(object sender, RibbonControlEventArgs e)
         {
-
+            // TODO: implementare eliminazione di un template
         }
     }
 }
