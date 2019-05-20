@@ -17,7 +17,7 @@ namespace Allegato3
         {
             InitializeComponent();
             // TODO: fare una query READ sul db per tirare su FileID e Nome
-            string jsonString = "{ \"templates\": { \"1\": \"Decreto legge crescita\", \"2\": \"Secondo template\" }}";
+            string jsonString = "{ \"templates\": { \"1\": \"Decreto legge crescita\" }}";
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
 
             for (int i = 0; i < jsonObject.First.Values().Count(); i++)
