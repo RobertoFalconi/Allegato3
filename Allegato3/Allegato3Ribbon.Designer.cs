@@ -16,7 +16,7 @@ namespace Allegato3
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
-            // TODO: fare una query READ sul db per tirare su FileID e Nome
+            // TODO: implementare la chiamata alla GET per visualizzare i nomi
             string jsonString = "{ \"templates\": { \"1\": \"Decreto legge crescita\" }}";
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
 

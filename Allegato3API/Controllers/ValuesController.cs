@@ -33,27 +33,11 @@ namespace Allegato3API.Controllers
             return "value";
         }
 
-        //// POST api/values
-        //public HttpResponseMessage Post(HttpRequestMessage request)
-        //{
-        //    string result;
-        //    try
-        //    {
-        //        result = request.Content.ReadAsStringAsync().Result;
-        //        if (result == null)
-        //        {
-        //            return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        //    }
-
-        //    // POST business logic code goes here
-
-        //    return new HttpResponseMessage(HttpStatusCode.Accepted);
-        //}
+        public async Task<HttpResponseMessage> Get(HttpRequestMessage request)
+        {
+            // TODO: implementare la GET
+            return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        }
 
         // POST api/values
         public async Task<HttpResponseMessage> Post(HttpRequestMessage request)
@@ -121,8 +105,30 @@ namespace Allegato3API.Controllers
         }
 
         // DELETE api/values/5
-        public void Delete(int id)
+        public async Task<HttpResponseMessage> Delete(HttpRequestMessage request)
         {
+            string result;
+            try
+            {
+                result = request.Content.ReadAsStringAsync().Result;
+                if (result == null)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                }
+            }
+            catch (Exception ex)
+            {
+                return new HttpResponseMessage(HttpStatusCode.BadRequest);
+            }
+
+            JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
+            string id = jsonObject.Properties().Select(p => p.Name).FirstOrDefault();
+            Files files = await db.Files.FindAsync(id);
+            db.Files.Remove(files);
+            await db.SaveChangesAsync();
+
+            return new HttpResponseMessage(HttpStatusCode.Accepted);
+
         }
     }
 }
