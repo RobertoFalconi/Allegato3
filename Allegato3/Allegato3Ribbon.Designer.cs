@@ -75,11 +75,11 @@ namespace Allegato3
             this.button5 = this.Factory.CreateRibbonButton();
             this.editBox1 = this.Factory.CreateRibbonEditBox();
             this.button2 = this.Factory.CreateRibbonButton();
+            this.lblFoglioId = this.Factory.CreateRibbonLabel();
             this.group6 = this.Factory.CreateRibbonGroup();
             this.button10 = this.Factory.CreateRibbonButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.lblFoglioId = this.Factory.CreateRibbonLabel();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group3.SuspendLayout();
@@ -97,7 +97,7 @@ namespace Allegato3
             this.tab1.Groups.Add(this.group5);
             this.tab1.Groups.Add(this.group4);
             this.tab1.Groups.Add(this.group6);
-            this.tab1.Label = "Allegato 3";
+            this.tab1.Label = "ALLEGATO 3";
             this.tab1.Name = "tab1";
             // 
             // group1
@@ -119,6 +119,7 @@ namespace Allegato3
             this.group3.Items.Add(this.gallery2);
             this.group3.Label = "Elimina il template";
             this.group3.Name = "group3";
+            this.group3.Visible = false;
             // 
             // gallery2
             // 
@@ -184,6 +185,7 @@ namespace Allegato3
             this.group4.Items.Add(this.lblFoglioId);
             this.group4.Label = "Crea nuovo template";
             this.group4.Name = "group4";
+            this.group4.Visible = false;
             // 
             // button5
             // 
@@ -209,6 +211,12 @@ namespace Allegato3
             this.button2.Visible = false;
             this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button2_Click);
             // 
+            // lblFoglioId
+            // 
+            this.lblFoglioId.Label = "lblFoglioId";
+            this.lblFoglioId.Name = "lblFoglioId";
+            this.lblFoglioId.Visible = false;
+            // 
             // group6
             // 
             this.group6.Items.Add(this.button10);
@@ -231,12 +239,6 @@ namespace Allegato3
             // folderBrowserDialog1
             // 
             this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.FolderBrowserDialog1_HelpRequest);
-            // 
-            // lblFoglioId
-            // 
-            this.lblFoglioId.Label = "lblFoglioId";
-            this.lblFoglioId.Name = "lblFoglioId";
-            this.lblFoglioId.Visible = false;
             // 
             // Allegato3Ribbon
             // 
