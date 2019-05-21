@@ -18,86 +18,90 @@ namespace Allegato3
 
         private async void Allegato3Ribbon_Load(object sender, RibbonUIEventArgs e)
         {
-            try
-            {
-                string result = "";
-                HttpResponseMessage response = await httpClient.GetAsync("http://localhost:50884/api/values");
-                if (response.IsSuccessStatusCode)
-                {
-                    result = await response.Content.ReadAsStringAsync();
-                }
+            Globals.Ribbons.Allegato3Ribbon.button10.Label = "Connessione riuscita";
+            //try
+            //{
+            //    string result = "";
+            //    HttpResponseMessage response = await httpClient.GetAsync("http://localhost:50884/api/values");
+            //    if (response.IsSuccessStatusCode)
+            //    {
+            //        result = await response.Content.ReadAsStringAsync();
+            //    }
 
-                Globals.Ribbons.Allegato3Ribbon.button10.Label = "Connessione riuscita";
+            //    Globals.Ribbons.Allegato3Ribbon.button10.Label = "Connessione riuscita";
 
-            }
-            catch (Exception ex)
-            {
-                Globals.Ribbons.Allegato3Ribbon.button10.Label = "Impossibile connettersi: " + ex.Message.ToString();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Globals.Ribbons.Allegato3Ribbon.button10.Label = "Impossibile connettersi: " + ex.Message.ToString();
+            //}
         }
 
         private void Button1_Click(object sender, RibbonControlEventArgs e)
         {
-            Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
+            label1.Label = "Salvataggio effettuato";
+            label1.ShowLabel = true;
+            timer1.Enabled = true;
+            //Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
 
-            Application oXL;
-            Workbook oWB;
-            Worksheet oSheet;
-            oXL = (Application)Marshal.GetActiveObject("Excel.Application");
-            oXL.Visible = true;
-            oWB = oXL.ActiveWorkbook;
-            dynamic docProps = oWB.CustomDocumentProperties;
+            //Application oXL;
+            //Workbook oWB;
+            //Worksheet oSheet;
+            //oXL = (Application)Marshal.GetActiveObject("Excel.Application");
+            //oXL.Visible = true;
+            //oWB = oXL.ActiveWorkbook;
+            //dynamic docProps = oWB.CustomDocumentProperties;
 
-            //string nomeFoglio = editBox1.Text; // TODO: non è detto che editBox1.Text sia compilato
-            string nomeFoglio = lblFoglioId.Label;
+            ////string nomeFoglio = editBox1.Text; // TODO: non è detto che editBox1.Text sia compilato
+            //string nomeFoglio = lblFoglioId.Label;
 
-            List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
-            Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
+            //List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
+            //Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
 
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "PUT";
-            using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                for (int s = 0; s < oWB.Sheets.Count; s++)
-                {
-                    fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
-                    currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s + 1]);
-                    //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
-                    for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
-                    {
-                        List<Tuple<dynamic, dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic, dynamic>>();
-                        foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
-                        {
-                            lista.Add(Tuple.Create<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
-                        }
-                        fogliExcel[s].Add(i, lista);
-                    }
-                }
-                fileExcel.Add(nomeFoglio, fogliExcel);
+            //HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
+            //httpWebRequest.ContentType = "application/json";
+            //httpWebRequest.Method = "PUT";
+            //using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            //{
+            //    for (int s = 0; s < oWB.Sheets.Count; s++)
+            //    {
+            //        fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
+            //        currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s + 1]);
+            //        //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
+            //        for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
+            //        {
+            //            List<Tuple<dynamic, dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic, dynamic>>();
+            //            foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
+            //            {
+            //                lista.Add(Tuple.Create<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
+            //            }
+            //            fogliExcel[s].Add(i, lista);
+            //        }
+            //    }
+            //    fileExcel.Add(nomeFoglio, fogliExcel);
 
 
 
-                var jsonString = JsonConvert.SerializeObject(fileExcel);
-                streamWriter.Write(jsonString);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
+            //    var jsonString = JsonConvert.SerializeObject(fileExcel);
+            //    streamWriter.Write(jsonString);
+            //    streamWriter.Flush();
+            //    streamWriter.Close();
+            //}
 
-            WebResponse resp = httpWebRequest.GetResponse();
+            //WebResponse resp = httpWebRequest.GetResponse();
 
-            if (resp.Equals(HttpStatusCode.BadRequest))
-            {
-                label1.Label = "Salvataggio fallito";
-                label1.ShowLabel = true;
-                timer1.Enabled = true;
-            }
-            else
-            {
-                label1.Label = "Salvataggio effettuato";
-                label1.ShowLabel = true;
-                timer1.Enabled = true;
-            }
+            //if (resp.Equals(HttpStatusCode.BadRequest))
+            //{
+            //    label1.Label = "Salvataggio fallito";
+            //    label1.ShowLabel = true;
+            //    timer1.Enabled = true;
+            //}
+            //else
+            //{
+            //    label1.Label = "Salvataggio effettuato";
+            //    label1.ShowLabel = true;
+            //    timer1.Enabled = true;
+            //}
 
             //using (var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse())
             //{
@@ -212,8 +216,6 @@ namespace Allegato3
 
         private void Button2_Click(object sender, RibbonControlEventArgs e)
         {
-            Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
-
             group2.Visible = true;
             group5.Visible = true;
 
@@ -227,65 +229,83 @@ namespace Allegato3
                 button2.Visible = true;
                 editBox1.Visible = true;
             }
+            label1.Label = "Salvataggio effettuato";
+            label1.ShowLabel = true;
+            timer1.Enabled = true;
+            //Worksheet currentSheet = Globals.ThisAddIn.GetActiveWorkSheet();
 
-            string nomeFoglio = editBox1.Text;
-            lblFoglioId.Label = nomeFoglio;
+            //group2.Visible = true;
+            //group5.Visible = true;
 
-            Application oXL;
-            Workbook oWB;
-            Worksheet oSheet;
-            oXL = (Application)Marshal.GetActiveObject("Excel.Application");
-            oXL.Visible = true;
-            oWB = oXL.ActiveWorkbook;
-            dynamic docProps = oWB.CustomDocumentProperties;
+            //if (button2.Visible && editBox1.Visible)
+            //{
+            //    button2.Visible = false;
+            //    editBox1.Visible = false;
+            //}
+            //else
+            //{
+            //    button2.Visible = true;
+            //    editBox1.Visible = true;
+            //}
 
-            List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
-            Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
+            //string nomeFoglio = editBox1.Text;
+            //lblFoglioId.Label = nomeFoglio;
 
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
-            httpWebRequest.ContentType = "application/json";
-            httpWebRequest.Method = "POST";
-            using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
-            {
-                for (int s = 0; s < oWB.Sheets.Count; s++)
-                {
-                    fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
-                    currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s + 1]);
-                    //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
-                    for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
-                    {
-                        List<Tuple<dynamic, dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic, dynamic>>();
-                        foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
-                        {
-                            lista.Add(Tuple.Create<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
-                        }
-                        fogliExcel[s].Add(i, lista);
-                    }
-                }
-                fileExcel.Add(nomeFoglio, fogliExcel);
+            //Application oXL;
+            //Workbook oWB;
+            //Worksheet oSheet;
+            //oXL = (Application)Marshal.GetActiveObject("Excel.Application");
+            //oXL.Visible = true;
+            //oWB = oXL.ActiveWorkbook;
+            //dynamic docProps = oWB.CustomDocumentProperties;
+
+            //List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
+            //Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
+
+            //HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
+            //httpWebRequest.ContentType = "application/json";
+            //httpWebRequest.Method = "POST";
+            //using (StreamWriter streamWriter = new StreamWriter(httpWebRequest.GetRequestStream()))
+            //{
+            //    for (int s = 0; s < oWB.Sheets.Count; s++)
+            //    {
+            //        fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
+            //        currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s + 1]);
+            //        //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
+            //        for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
+            //        {
+            //            List<Tuple<dynamic, dynamic, dynamic>> lista = new List<Tuple<dynamic, dynamic, dynamic>>();
+            //            foreach (dynamic elem in currentSheet.UsedRange.Columns[i + 1, Type.Missing].Rows)
+            //            {
+            //                lista.Add(Tuple.Create<dynamic, dynamic, dynamic>(elem.Formula, elem.Interior.Color, elem.Font.Bold));
+            //            }
+            //            fogliExcel[s].Add(i, lista);
+            //        }
+            //    }
+            //    fileExcel.Add(nomeFoglio, fogliExcel);
 
 
 
-                var jsonString = JsonConvert.SerializeObject(fileExcel);
-                streamWriter.Write(jsonString);
-                streamWriter.Flush();
-                streamWriter.Close();
-            }
+            //    var jsonString = JsonConvert.SerializeObject(fileExcel);
+            //    streamWriter.Write(jsonString);
+            //    streamWriter.Flush();
+            //    streamWriter.Close();
+            //}
 
-            WebResponse resp = httpWebRequest.GetResponse();
+            //WebResponse resp = httpWebRequest.GetResponse();
 
-            if (resp.Equals(HttpStatusCode.BadRequest))
-            {
-                label1.Label = "Salvataggio fallito";
-                label1.ShowLabel = true;
-                timer1.Enabled = true;
-            }
-            else
-            {
-                label1.Label = "Salvataggio effettuato";
-                label1.ShowLabel = true;
-                timer1.Enabled = true;
-            }
+            //if (resp.Equals(HttpStatusCode.BadRequest))
+            //{
+            //    label1.Label = "Salvataggio fallito";
+            //    label1.ShowLabel = true;
+            //    timer1.Enabled = true;
+            //}
+            //else
+            //{
+            //    label1.Label = "Salvataggio effettuato";
+            //    label1.ShowLabel = true;
+            //    timer1.Enabled = true;
+            //}
 
             //using (var httpResponse = (HttpWebResponse)httpWebRequest.GetResponse())
             //{
