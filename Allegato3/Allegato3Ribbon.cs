@@ -133,6 +133,20 @@ namespace Allegato3
 
             lblFoglioId.Label = jsonObject.Properties().Select(p => p.Name).FirstOrDefault();
 
+            var list1 = new List<string>(); // { "e", "s" };
+            list1.Add("e");
+            list1.Add("s");
+            var flatList1 = string.Join(";", list1);
+            var list2 = new List<string>(); // { "t", "t/c", "ext", "co", "ka", "c", "k" };
+            list2.Add("t");
+            list2.Add("t/c");
+            list2.Add("ext");
+            list2.Add("co");
+            list2.Add("ka");
+            list2.Add("c");
+            list2.Add("k");
+            var flatList2 = string.Join(";", list2);
+
             foreach (var fileExcel in jsonObject)
             {
                 int s = 0;
@@ -143,7 +157,35 @@ namespace Allegato3
                     {
                         for (int i = 0; i < colonna.Values().Count(); i++)
                         {
-                            currentSheet.Cells[i + 1, j].Value = colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(0).ElementAtOrDefault(0); // il secondo è l'elm e il terzo l'item
+                            var value = colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(0).ElementAtOrDefault(0); // il secondo è l'elem e il terzo l'item
+                            currentSheet.Cells[i + 1, j].Value = value;
+                            if ("" + value == "e" || "" + value == "s")
+                            {
+                                var cell = currentSheet.Cells[i + 1, j];
+                                cell.Validation.Delete();
+                                cell.Validation.Add(
+                                   XlDVType.xlValidateList,
+                                   XlDVAlertStyle.xlValidAlertInformation,
+                                   XlFormatConditionOperator.xlBetween,
+                                   flatList1,
+                                   Type.Missing);
+                                cell.Validation.IgnoreBlank = true;
+                                cell.Validation.InCellDropdown = true;
+                            }
+                            else if ("" + value == "t" || "" + value == "t/c" || "" + value == "ext" ||
+                                "" + value == "co" || "" + value == "ka" || "" + value == "c" || "" + value == "k")
+                            {
+                                var cell = currentSheet.Cells[i + 1, j];
+                                cell.Validation.Delete();
+                                cell.Validation.Add(
+                                   XlDVType.xlValidateList,
+                                   XlDVAlertStyle.xlValidAlertInformation,
+                                   XlFormatConditionOperator.xlBetween,
+                                   flatList2,
+                                   Type.Missing);
+                                cell.Validation.IgnoreBlank = true;
+                                cell.Validation.InCellDropdown = true;
+                            }
                             if (!colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(1).FirstOrDefault().ToString().Equals("16777215")) currentSheet.Cells[i + 1, j].Interior.Color = colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(1).FirstOrDefault();
                             if (colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(2).FirstOrDefault().ToString().Equals("True")) currentSheet.Cells[i + 1, j].Font.Bold = true;
                         }
