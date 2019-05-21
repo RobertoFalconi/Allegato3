@@ -132,7 +132,7 @@ namespace Allegato3
             var list1 = new List<string>(); // { "e", "s" };
             list1.Add("e");
             list1.Add("s");
-            var flatList1 = string.Join(",", list1.ToArray());
+            var flatList1 = string.Join(",", list1);
             var list2 = new List<string>(); // { "t", "t/c", "ext", "co", "ka", "c", "k" };
             list2.Add("t");
             list2.Add("t/c");
@@ -141,7 +141,7 @@ namespace Allegato3
             list2.Add("ka");
             list2.Add("c");
             list2.Add("k");
-            var flatList2 = string.Join(",", list2.ToArray());
+            var flatList2 = string.Join(",", list2);
 
             foreach (var fileExcel in jsonObject)
             {
@@ -153,8 +153,9 @@ namespace Allegato3
                     {
                         for (int i = 0; i < colonna.Values().Count(); i++)
                         {
-                            currentSheet.Cells[i + 1, j].Value = colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(0).ElementAtOrDefault(0); // il secondo è l'elm e il terzo l'item
-                            if (""+currentSheet.Cells[i + 1, j].Value == "e" || ""+currentSheet.Cells[i + 1, j].Value == "s")
+                            var value = colonna.ElementAtOrDefault(0).ElementAtOrDefault(i).ElementAtOrDefault(0).ElementAtOrDefault(0); // il secondo è l'elem e il terzo l'item
+                            currentSheet.Cells[i + 1, j].Value = value;
+                            if (""+ value == "e" || ""+ value == "s")
                             {
                                 var cell = currentSheet.Cells[i + 1, j];
                                 cell.Validation.Delete();
@@ -167,9 +168,8 @@ namespace Allegato3
                                 cell.Validation.IgnoreBlank = true;
                                 cell.Validation.InCellDropdown = true;
                             }
-                            else if (""+currentSheet.Cells[i + 1, j].Value == "t" || ""+currentSheet.Cells[i + 1, j].Value == "t/c" || ""+currentSheet.Cells[i + 1, j].Value == "ext" ||
-                                ""+currentSheet.Cells[i + 1, j].Value == "co" || ""+currentSheet.Cells[i + 1, j].Value == "ka" || ""+currentSheet.Cells[i + 1, j].Value == "c"
-                                || ""+currentSheet.Cells[i + 1, j].Value == "k")
+                            else if (""+ value == "t" || ""+ value == "t/c" || ""+ value == "ext" ||
+                                ""+ value == "co" || ""+ value == "ka" || ""+ value == "c" || ""+ value == "k")
                             {
                                 var cell = currentSheet.Cells[i + 1, j];
                                 cell.Validation.Delete();
