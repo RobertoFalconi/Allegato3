@@ -58,7 +58,7 @@ namespace Allegato3API.Controllers
 
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
             Files files = new Files();
-            files.Nome = jsonObject.Properties().Select(p => p.Name).FirstOrDefault();
+            files.Nome = jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0];
             files.JsonString = result;
 
             if (!ModelState.IsValid)
@@ -90,7 +90,7 @@ namespace Allegato3API.Controllers
             }
 
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
-            Files files = await db.Files.FindAsync(jsonObject.Properties().Select(p => p.Name).FirstOrDefault());
+            Files files = await db.Files.FindAsync(jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0]);
 
             if (!ModelState.IsValid)
             {
@@ -122,7 +122,7 @@ namespace Allegato3API.Controllers
             }
 
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
-            string id = jsonObject.Properties().Select(p => p.Name).FirstOrDefault();
+            string id = jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0];
             Files files = await db.Files.FindAsync(id);
             db.Files.Remove(files);
             await db.SaveChangesAsync();

@@ -48,11 +48,10 @@ namespace Allegato3
             oWB = oXL.ActiveWorkbook;
             dynamic docProps = oWB.CustomDocumentProperties;
 
-            //string nomeFoglio = editBox1.Text; // TODO: non è detto che editBox1.Text sia compilato
-            string nomeFoglio = lblFoglioId.Label;
-
-            List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
+            string nomeFile = lblFoglioId.Label;
+            string nomeFoglio = "";
             Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>> fileExcel = new Dictionary<string, List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>>();
+            List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>> fogliExcel = new List<Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>>();
 
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
             httpWebRequest.ContentType = "application/json";
@@ -61,8 +60,9 @@ namespace Allegato3
             {
                 for (int s = 0; s < oWB.Sheets.Count; s++)
                 {
-                    fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
                     currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s + 1]);
+                    nomeFoglio += "#" + currentSheet.Name;
+                    fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
                     //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
                     for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
                     {
@@ -74,7 +74,7 @@ namespace Allegato3
                         fogliExcel[s].Add(i, lista);
                     }
                 }
-                fileExcel.Add(nomeFoglio, fogliExcel);
+                fileExcel.Add(nomeFile+nomeFoglio, fogliExcel);
 
 
 
@@ -131,7 +131,7 @@ namespace Allegato3
             string jsonString = JsonString.jsonString;
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
 
-            lblFoglioId.Label = jsonObject.Properties().Select(p => p.Name).FirstOrDefault();
+            lblFoglioId.Label = jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0];
 
             var list1 = new List<string>(); // { "e", "s" };
             list1.Add("e");
@@ -271,8 +271,9 @@ namespace Allegato3
                 editBox1.Visible = true;
             }
 
-            string nomeFoglio = editBox1.Text;
-            lblFoglioId.Label = nomeFoglio;
+            string nomeFile = editBox1.Text;
+            lblFoglioId.Label = nomeFile;
+            string nomeFoglio = "";
 
             Application oXL;
             Workbook oWB;
@@ -294,6 +295,7 @@ namespace Allegato3
                 {
                     fogliExcel.Add(new Dictionary<int, List<Tuple<dynamic, dynamic, dynamic>>>());
                     currentSheet = ((Worksheet)oXL.ActiveWorkbook.Sheets[s + 1]);
+                    nomeFoglio += "#" + currentSheet.Name;
                     //Parallel.For(0, currentSheet.UsedRange.Columns.Count, i =>
                     for (int i = 0; i < currentSheet.UsedRange.Columns.Count; i++)
                     {
@@ -305,7 +307,7 @@ namespace Allegato3
                         fogliExcel[s].Add(i, lista);
                     }
                 }
-                fileExcel.Add(nomeFoglio, fogliExcel);
+                fileExcel.Add(nomeFile+nomeFoglio, fogliExcel);
 
 
 
