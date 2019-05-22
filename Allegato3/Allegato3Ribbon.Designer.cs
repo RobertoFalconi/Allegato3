@@ -75,11 +75,12 @@ namespace Allegato3
             this.button5 = this.Factory.CreateRibbonButton();
             this.editBox1 = this.Factory.CreateRibbonEditBox();
             this.button2 = this.Factory.CreateRibbonButton();
+            this.lblFoglioId = this.Factory.CreateRibbonLabel();
             this.group6 = this.Factory.CreateRibbonGroup();
             this.button10 = this.Factory.CreateRibbonButton();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.folderBrowserDialog1 = new System.Windows.Forms.FolderBrowserDialog();
-            this.lblFoglioId = this.Factory.CreateRibbonLabel();
+            this.button3 = this.Factory.CreateRibbonButton();
             this.tab1.SuspendLayout();
             this.group1.SuspendLayout();
             this.group3.SuspendLayout();
@@ -108,6 +109,7 @@ namespace Allegato3
             // 
             // gallery1
             // 
+            this.gallery1.Buttons.Add(this.button3);
             this.gallery1.ControlSize = Microsoft.Office.Core.RibbonControlSize.RibbonControlSizeLarge;
             this.gallery1.Image = global::Allegato3.Properties.Resources.icons8_bookmark_40;
             this.gallery1.Label = "Carica template";
@@ -209,6 +211,12 @@ namespace Allegato3
             this.button2.Visible = false;
             this.button2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button2_Click);
             // 
+            // lblFoglioId
+            // 
+            this.lblFoglioId.Label = "lblFoglioId";
+            this.lblFoglioId.Name = "lblFoglioId";
+            this.lblFoglioId.Visible = false;
+            // 
             // group6
             // 
             this.group6.Items.Add(this.button10);
@@ -232,11 +240,11 @@ namespace Allegato3
             // 
             this.folderBrowserDialog1.HelpRequest += new System.EventHandler(this.FolderBrowserDialog1_HelpRequest);
             // 
-            // lblFoglioId
+            // button3
             // 
-            this.lblFoglioId.Label = "lblFoglioId";
-            this.lblFoglioId.Name = "lblFoglioId";
-            this.lblFoglioId.Visible = false;
+            this.button3.Label = "Riavvia Excel per vedere i nuovi template...";
+            this.button3.Name = "button3";
+            this.button3.Visible = false;
             // 
             // Allegato3Ribbon
             // 
@@ -284,6 +292,7 @@ namespace Allegato3
         internal RibbonEditBox editBox1;
         internal RibbonButton button2;
         internal RibbonLabel lblFoglioId;
+        private RibbonButton button3;
     }
 
     partial class ThisRibbonCollection

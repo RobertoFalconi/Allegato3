@@ -258,6 +258,7 @@ namespace Allegato3
 
             group2.Visible = true;
             group5.Visible = true;
+            button3.Visible = true;
 
             if (button2.Visible && editBox1.Visible)
             {
