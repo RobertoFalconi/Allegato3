@@ -26,7 +26,7 @@ namespace Allegato3
                 {
                     result = await response.Content.ReadAsStringAsync();
                 }
-
+                
                 Globals.Ribbons.Allegato3Ribbon.button10.Label = "Connessione riuscita";
 
             }

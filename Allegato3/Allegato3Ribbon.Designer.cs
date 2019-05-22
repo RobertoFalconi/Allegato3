@@ -2,6 +2,7 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 
@@ -19,26 +20,29 @@ namespace Allegato3
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
-            // TODO: implementare la chiamata alla GET per visualizzare i nomi
-            string jsonString = "{ \"templates\": { \"1\": \"Decreto legge crescita\" }}";
             HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
             httpWebRequest.ContentType = "application/json";
             httpWebRequest.Method = "GET";
-            WebResponse resp = httpWebRequest.GetResponse();
-            JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
+            WebResponse response = httpWebRequest.GetResponse();
+            string responseFromServer;
+            using (Stream dataStream = response.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(dataStream);
+                responseFromServer = reader.ReadToEnd();
+            }
+            response.Close();
+            List<string> responseList = responseFromServer.Split(',').ToList();
 
-            for (int i = 0; i < jsonObject.First.Values().Count(); i++)
+            for (int i = 0; i < responseList.Count(); i++)
             {
                 var rbTemp = this.Factory.CreateRibbonButton();
-                rbTemp.Label = (string)jsonObject.First.Values().ElementAtOrDefault(i).FirstOrDefault();
-                //rbTemp.Tag = query.ID; 
+                rbTemp.Label = responseList[i];
                 rbTemp.Image = global::Allegato3.Properties.Resources.icons8_document_16;
                 rbTemp.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.Button5_Click);
                 this.gallery1.Buttons.Add((RibbonButton)rbTemp);
 
                 var rbTemp2 = this.Factory.CreateRibbonButton();
-                rbTemp2.Label = "Elimina "+ (string)jsonObject.First.Values().ElementAtOrDefault(i).FirstOrDefault();
-                //rbTemp2.Tag = query.ID;
+                rbTemp2.Label = "Elimina " + responseList[i];
                 rbTemp2.Image = global::Allegato3.Properties.Resources.icons8_delete_16;
                 rbTemp2.Click += new Microsoft.Office.Tools.Ribbon.RibbonControlEventHandler(this.EliminaTemplate);
                 this.gallery2.Buttons.Add((RibbonButton)rbTemp2);
