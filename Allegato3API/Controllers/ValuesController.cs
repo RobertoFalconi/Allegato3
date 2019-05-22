@@ -22,22 +22,23 @@ namespace Allegato3API.Controllers
         private Allegato3APIContext db = new Allegato3APIContext();
 
         // GET api/values
-        public IEnumerable<string> Get()
+        public async Task<IEnumerable<string>> Get(HttpRequestMessage request)
         {
-            return new string[] { "value1", "value2" };
+            var ret = db.Files.Select(x => x.Nome);
+            return ret;
         }
 
-        // GET api/values/5
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //// GET api/values/5
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
 
-        public async Task<HttpResponseMessage> Get(HttpRequestMessage request)
-        {
-            // TODO: implementare la GET
-            return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        }
+        //public async Task<HttpResponseMessage> Get(HttpRequestMessage request)
+        //{
+        //    // TODO: implementare la GET
+        //    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+        //}
 
         // POST api/values
         public async Task<HttpResponseMessage> Post(HttpRequestMessage request)

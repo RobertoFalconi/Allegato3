@@ -1,7 +1,9 @@
 ﻿using Microsoft.Office.Tools.Ribbon;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 
 namespace Allegato3
 {
@@ -12,12 +14,17 @@ namespace Allegato3
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
+
         public Allegato3Ribbon()
             : base(Globals.Factory.GetRibbonFactory())
         {
             InitializeComponent();
             // TODO: implementare la chiamata alla GET per visualizzare i nomi
             string jsonString = "{ \"templates\": { \"1\": \"Decreto legge crescita\" }}";
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "GET";
+            WebResponse resp = httpWebRequest.GetResponse();
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
 
             for (int i = 0; i < jsonObject.First.Values().Count(); i++)
