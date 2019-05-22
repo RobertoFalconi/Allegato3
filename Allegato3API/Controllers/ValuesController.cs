@@ -28,17 +28,12 @@ namespace Allegato3API.Controllers
             return ret;
         }
 
-        //// GET api/values/5
-        //public string Get(int id)
-        //{
-        //    return "value";
-        //}
-
-        //public async Task<HttpResponseMessage> Get(HttpRequestMessage request)
-        //{
-        //    // TODO: implementare la GET
-        //    return new HttpResponseMessage(HttpStatusCode.BadRequest);
-        //}
+        // GET api/values/5
+        public string Get(int id)
+        {
+            // TODO: implementare la GET
+            return "{\"the best prova#Foglio1\":[{\"0\":[{\"Item1\":\"sciau belu\",\"Item2\":16777215.0,\"Item3\":false}]}]}";
+        }
 
         // POST api/values
         public async Task<HttpResponseMessage> Post(HttpRequestMessage request)

@@ -127,8 +127,20 @@ namespace Allegato3
             oWB = oXL.ActiveWorkbook;
             dynamic docProps = oWB.CustomDocumentProperties;
 
-            // TODO: implementare la chiamata alla GET per visualizzare il jsonString
-            string jsonString = JsonString.jsonString;
+            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create("http://localhost:50884/api/values/0");
+            httpWebRequest.ContentType = "application/json";
+            httpWebRequest.Method = "GET";
+            WebResponse response = httpWebRequest.GetResponse();
+            string jsonString;
+            using (Stream dataStream = response.GetResponseStream())
+            {
+                StreamReader reader = new StreamReader(dataStream);
+                jsonString = reader.ReadToEnd();
+                jsonString = jsonString.Replace("\\", string.Empty);
+                jsonString = jsonString.Trim('"');
+            }
+            response.Close();
+
             JObject jsonObject = (JObject)JsonConvert.DeserializeObject(jsonString);
 
             lblFoglioId.Label = jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0];
