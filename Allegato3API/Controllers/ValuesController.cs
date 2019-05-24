@@ -6,6 +6,7 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.ModelBinding;
@@ -24,15 +25,31 @@ namespace Allegato3API.Controllers
         // GET api/values
         public async Task<IEnumerable<string>> Get(HttpRequestMessage request)
         {
-            var ret = db.Files.Select(x => x.Nome);
-            return ret;
+            try
+            {
+                var ret = db.Files.Select(x => x.Nome);
+                return ret;
+            }
+
+            catch (Exception ex)
+            {
+                return new List<string>() { ex.Message } ;
+            }
         }
 
         // GET api/values/5
         public string Get(int id)
         {
-            // TODO: implementare la GET
-            return "{\"the best prova#Foglio1\":[{\"0\":[{\"Item1\":\"sciau belu\",\"Item2\":16777215.0,\"Item3\":false}]}]}";
+            try
+            {
+                // TODO: implementare la GET
+                return "{\"the best prova#Foglio1\":[{\"0\":[{\"Item1\":\"sciau belu\",\"Item2\":16777215.0,\"Item3\":false}]}]}";
+            }
+
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         // POST api/values
@@ -46,26 +63,27 @@ namespace Allegato3API.Controllers
                 {
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
+
+
+                JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
+                Files files = new Files();
+                files.Nome = jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0];
+                files.JsonString = result;
+
+                if (!ModelState.IsValid)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                }
+
+                db.Files.Add(files);
+                await db.SaveChangesAsync();
+
+                return new HttpResponseMessage(HttpStatusCode.Accepted);
             }
             catch (Exception ex)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
-
-            JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
-            Files files = new Files();
-            files.Nome = jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0];
-            files.JsonString = result;
-
-            if (!ModelState.IsValid)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-
-            db.Files.Add(files);
-            await db.SaveChangesAsync();
-
-            return new HttpResponseMessage(HttpStatusCode.Accepted);
         }
 
         // PUT api/values/5
@@ -79,25 +97,26 @@ namespace Allegato3API.Controllers
                 {
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
+
+
+                JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
+                Files files = await db.Files.FindAsync(jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0]);
+
+                if (!ModelState.IsValid)
+                {
+                    return new HttpResponseMessage(HttpStatusCode.BadRequest);
+                }
+
+                files.JsonString = result;
+                db.Entry(files).State = EntityState.Modified;
+                await db.SaveChangesAsync();
+
+                return new HttpResponseMessage(HttpStatusCode.Accepted);
             }
             catch (Exception ex)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
-
-            JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
-            Files files = await db.Files.FindAsync(jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0]);
-
-            if (!ModelState.IsValid)
-            {
-                return new HttpResponseMessage(HttpStatusCode.BadRequest);
-            }
-
-            files.JsonString = result;
-            db.Entry(files).State = EntityState.Modified;
-            await db.SaveChangesAsync();
-
-            return new HttpResponseMessage(HttpStatusCode.Accepted);
         }
 
         // DELETE api/values/5
@@ -111,20 +130,20 @@ namespace Allegato3API.Controllers
                 {
                     return new HttpResponseMessage(HttpStatusCode.BadRequest);
                 }
+
+
+                JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
+                string id = jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0];
+                Files files = await db.Files.FindAsync(id);
+                db.Files.Remove(files);
+                await db.SaveChangesAsync();
+
+                return new HttpResponseMessage(HttpStatusCode.Accepted);
             }
             catch (Exception ex)
             {
                 return new HttpResponseMessage(HttpStatusCode.BadRequest);
             }
-
-            JObject jsonObject = (JObject)JsonConvert.DeserializeObject(result);
-            string id = jsonObject.Properties().Select(p => p.Name).FirstOrDefault().Split('#')[0];
-            Files files = await db.Files.FindAsync(id);
-            db.Files.Remove(files);
-            await db.SaveChangesAsync();
-
-            return new HttpResponseMessage(HttpStatusCode.Accepted);
-
         }
     }
 }
